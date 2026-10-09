@@ -10,6 +10,7 @@
 
 
 import { useState } from 'react'
+import TechText from './components/Techtext/TechText'
 
 const navigation = [
   { label: 'Overview', icon: '⌂' },
@@ -79,11 +80,10 @@ function App() {
               <button
                 key={item.label}
                 onClick={() => setActive(item.label)}
-                className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition ${
-                  active === item.label
+                className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition ${active === item.label
                     ? 'border border-white/8 bg-white/[0.07] text-white'
                     : 'text-zinc-500 hover:bg-white/4 hover:text-zinc-200'
-                }`}
+                  }`}
               >
                 <span className="w-5 text-center text-base">{item.icon}</span>
                 {item.label}
@@ -237,13 +237,27 @@ function App() {
                     )}
 
                     {component.preview === 'tech' && (
-                      <div className="px-4 text-center">
-                        <p className="text-3xl font-black tracking-tight text-orange-400 md:text-4xl">
-                          TechText<span className="text-white">_</span>
-                        </p>
-                        <p className="mt-3 text-[10px] tracking-[0.2em] text-zinc-600">
-                          INTERACTIVE TYPOGRAPHY
-                        </p>
+                      <div className="absolute inset-0">
+                        <TechText
+                          text="CHISPA"
+                          fontWeight={700}
+                          fontSize={112}
+                          color="#f4f4f5"
+                          accentColor="#fb923c"
+                          reach={100}
+                          softness={0.72}
+                          dashLength={4}
+                          dashGap={2}
+                          strokeWidth={1.2}
+                          lineStyle="dashed"
+                          reveal="letter"
+                          specks={8}
+                          selection
+                          labels
+                          draggable
+                          sweep
+                          className="h-full w-full"
+                        />
                       </div>
                     )}
 
