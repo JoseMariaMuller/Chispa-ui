@@ -290,6 +290,11 @@ function App() {
                     <div>
                       <div className="flex items-center gap-2">
                         <h3 className="text-sm font-semibold">{component.name}</h3>
+                        {selectedComponent === component.name && (
+  <p className="mt-2 text-[10px] font-semibold uppercase tracking-wider text-orange-400">
+    Selected component
+  </p>
+)}
                         <span className="rounded border border-white/8 px-1.5 py-0.5 text-[9px] text-zinc-500">
                           {component.category}
                         </span>
