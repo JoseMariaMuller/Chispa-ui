@@ -50,6 +50,7 @@ const components = [
 function App() {
   const [active, setActive] = useState('Overview')
   const [search, setSearch] = useState('')
+  const [selectedComponent, setSelectedComponent] = useState<string | null>(null)
 
   const filteredComponents = components.filter((component) =>
     `${component.name} ${component.category} ${component.description}`
@@ -81,8 +82,8 @@ function App() {
                 key={item.label}
                 onClick={() => setActive(item.label)}
                 className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition ${active === item.label
-                    ? 'border border-white/8 bg-white/[0.07] text-white'
-                    : 'text-zinc-500 hover:bg-white/4 hover:text-zinc-200'
+                  ? 'border border-white/8 bg-white/[0.07] text-white'
+                  : 'text-zinc-500 hover:bg-white/4 hover:text-zinc-200'
                   }`}
               >
                 <span className="w-5 text-center text-base">{item.icon}</span>
@@ -227,7 +228,10 @@ function App() {
               {filteredComponents.map((component) => (
                 <article
                   key={component.name}
-                  className="group overflow-hidden rounded-xl border border-white/8 bg-[#0d0d10] transition hover:border-orange-400/30"
+                  className={`group overflow-hidden rounded-xl border bg-[#0d0d10] transition ${selectedComponent === component.name
+                      ? 'border-orange-400 ring-1 ring-orange-400/30'
+                      : 'border-white/8 hover:border-orange-400/30'
+                    }`}
                 >
                   <div className="relative flex h-48 items-center justify-center overflow-hidden border-b border-white/[0.07] bg-[radial-gradient(#ffffff0b_1px,transparent_1px)] bg-size-[18px_18px]">
                     {component.preview === 'button' && (
@@ -295,7 +299,11 @@ function App() {
                       </p>
                     </div>
                     <button
-                      onClick={() => setActive(component.category === 'Effects' ? 'Text Effects' : 'Components')}
+
+                      onClick={() => {
+                        setSelectedComponent(component.name)
+                        setActive(component.category === 'Effects' ? 'Text Effects' : 'Components')
+                      }}
                       aria-label={`Explore ${component.name}`}
                       className="rounded-md border border-white/8 px-2.5 py-1.5 text-xs text-zinc-500 transition hover:border-orange-400/30 hover:text-orange-300"
                     >
