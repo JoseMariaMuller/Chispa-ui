@@ -1,16 +1,6 @@
-// import TechText from './components/Techtext/TechText';
-
-// export default function App() {
-//   return (<main className="min-h-screen bg-[#080b12] flex  justify-center">
-//     <div style={{ width: '100%', maxWidth: '1000px', height: '480px', position: 'relative', }} >
-//       <TechText text="CHISPA-UI" fontWeight={600} fontSize={150} reveal="letter" dashLength={4} dashGap={2} specks={15} fontFamily="" color="#ffffff" accentColor="#00e5ff" letterSpacing={-0.05} reach={200} softness={0.7} strokeWidth={1.5} speed={1} lineStyle="dashed" selection labels draggable sweep />
-//     </div>
-//   </main>);
-// }
-
-
 import { useState } from 'react'
 import TechText from './components/Techtext/TechText'
+import SpecularButton from './components/SpecularButton'
 
 const navigation = [
   { label: 'Overview', icon: '⌂' },
@@ -22,11 +12,11 @@ const navigation = [
 
 const components = [
   {
-    name: 'Button',
-    category: 'UI',
-    description: 'Actions, variants and interactive states.',
-    preview: 'button',
-  },
+  name: 'SpecularButton',
+  category: 'UI',
+  description: 'A button with an interactive specular light effect.',
+  preview: 'specular',
+},
   {
     name: 'TechText',
     category: 'Effects',
@@ -238,10 +228,18 @@ function App() {
                 >
                   <div className="relative flex h-48 items-center justify-center overflow-hidden border-b border-white/[0.07] bg-[radial-gradient(#ffffff0b_1px,transparent_1px)] bg-size-[18px_18px]">
                     {component.preview === 'button' && (
-                      <button className="rounded-lg bg-orange-400 px-5 py-2.5 text-sm font-semibold text-black shadow-lg shadow-orange-400/10 transition hover:scale-105">
-                        Get started →
-                      </button>
-                    )}
+  <button className="rounded-lg bg-orange-400 px-5 py-2.5 text-sm font-semibold text-black shadow-lg shadow-orange-400/10 transition hover:scale-105">
+    Get started →
+  </button>
+)}
+
+{component.preview === 'specular' && (
+  <SpecularButton
+    onClick={() => setSelectedComponent('SpecularButton')}
+  >
+    Try SpecularButton
+  </SpecularButton>
+)}
 
                     {component.preview === 'tech' && (
                       <div className="absolute inset-0">
