@@ -57,6 +57,9 @@ function App() {
       .toLowerCase()
       .includes(search.toLowerCase()),
   )
+  const selected = components.find(
+  (component) => component.name === selectedComponent,
+)
 
   return (
     <div className="min-h-screen bg-[#09090b] text-zinc-100">
@@ -318,6 +321,37 @@ function App() {
                 </article>
               ))}
             </div>
+            
+{selected && (
+  <section className="mt-6 rounded-2xl border border-orange-400/20 bg-[#101013] p-6 md:p-8">
+    <div className="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-orange-400">
+          COMPONENT DETAILS
+        </p>
+
+        <h3 className="mt-2 text-2xl font-semibold">
+          {selected.name}
+        </h3>
+
+        <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-500">
+          {selected.description}
+        </p>
+
+        <p className="mt-4 text-xs text-zinc-500">
+          Category: {selected.category}
+        </p>
+      </div>
+
+      <button
+        onClick={() => setSelectedComponent(null)}
+        className="rounded-lg border border-white/10 px-3 py-2 text-xs text-zinc-300 transition hover:border-orange-400/30 hover:text-orange-300"
+      >
+        Close ×
+      </button>
+    </div>
+  </section>
+)}
 
             {filteredComponents.length === 0 && (
               <p className="rounded-xl border border-white/8 p-8 text-center text-sm text-zinc-500">
