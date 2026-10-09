@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import TechText from './components/Techtext/TechText'
 import SpecularButton from './components/SpecularButton'
+import ParticleText from './components/ParticleText'
 
 const navigation = [
   { label: 'Overview', icon: '⌂' },
@@ -12,11 +13,11 @@ const navigation = [
 
 const components = [
   {
-  name: 'SpecularButton',
-  category: 'UI',
-  description: 'A button with an interactive specular light effect.',
-  preview: 'specular',
-},
+    name: 'SpecularButton',
+    category: 'UI',
+    description: 'A button with an interactive specular light effect.',
+    preview: 'specular',
+  },
   {
     name: 'TechText',
     category: 'Effects',
@@ -24,10 +25,10 @@ const components = [
     preview: 'tech',
   },
   {
-    name: 'SplitText',
+    name: 'ParticleText',
     category: 'Effects',
-    description: 'Animated text reveals and transitions.',
-    preview: 'split',
+    description: 'Particle-based typography with interactive motion and glow.',
+    preview: 'particles',
   },
   {
     name: 'Card',
@@ -48,8 +49,8 @@ function App() {
       .includes(search.toLowerCase()),
   )
   const selected = components.find(
-  (component) => component.name === selectedComponent,
-)
+    (component) => component.name === selectedComponent,
+  )
 
   return (
     <div className="min-h-screen bg-[#09090b] text-zinc-100">
@@ -222,24 +223,24 @@ function App() {
                 <article
                   key={component.name}
                   className={`group overflow-hidden rounded-xl border bg-[#0d0d10] transition ${selectedComponent === component.name
-                      ? 'border-orange-400 ring-1 ring-orange-400/30'
-                      : 'border-white/8 hover:border-orange-400/30'
+                    ? 'border-orange-400 ring-1 ring-orange-400/30'
+                    : 'border-white/8 hover:border-orange-400/30'
                     }`}
                 >
                   <div className="relative flex h-48 items-center justify-center overflow-hidden border-b border-white/[0.07] bg-[radial-gradient(#ffffff0b_1px,transparent_1px)] bg-size-[18px_18px]">
                     {component.preview === 'button' && (
-  <button className="rounded-lg bg-orange-400 px-5 py-2.5 text-sm font-semibold text-black shadow-lg shadow-orange-400/10 transition hover:scale-105">
-    Get started →
-  </button>
-)}
+                      <button className="rounded-lg bg-orange-400 px-5 py-2.5 text-sm font-semibold text-black shadow-lg shadow-orange-400/10 transition hover:scale-105">
+                        Get started →
+                      </button>
+                    )}
 
-{component.preview === 'specular' && (
-  <SpecularButton
-    onClick={() => setSelectedComponent('SpecularButton')}
-  >
-    Try SpecularButton
-  </SpecularButton>
-)}
+                    {component.preview === 'specular' && (
+                      <SpecularButton
+                        onClick={() => setSelectedComponent('SpecularButton')}
+                      >
+                        Try SpecularButton
+                      </SpecularButton>
+                    )}
 
                     {component.preview === 'tech' && (
                       <div className="absolute inset-0">
@@ -275,6 +276,26 @@ function App() {
                       </div>
                     )}
 
+                    {component.preview === 'particles' && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <ParticleText
+                          text="CHISPA"
+                          fontSize="clamp(2rem, 6vw, 4rem)"
+                          fontWeight={800}
+                          color="#f4f4f5"
+                          highlightColor="#fb923c"
+                          density={4}
+                          particleSize={2}
+                          scatter={100}
+                          trigger="mount"
+                          glow
+                          className="h-full w-full"
+                        />
+                      </div>
+                    )}
+
+
+
                     {component.preview === 'card' && (
                       <div className="w-56 rounded-xl border border-white/10 bg-[#141418] p-4 shadow-2xl">
                         <div className="mb-4 flex items-center justify-between">
@@ -292,10 +313,10 @@ function App() {
                       <div className="flex items-center gap-2">
                         <h3 className="text-sm font-semibold">{component.name}</h3>
                         {selectedComponent === component.name && (
-  <p className="mt-2 text-[10px] font-semibold uppercase tracking-wider text-orange-400">
-    Selected component
-  </p>
-)}
+                          <p className="mt-2 text-[10px] font-semibold uppercase tracking-wider text-orange-400">
+                            Selected component
+                          </p>
+                        )}
                         <span className="rounded border border-white/8 px-1.5 py-0.5 text-[9px] text-zinc-500">
                           {component.category}
                         </span>
@@ -319,37 +340,37 @@ function App() {
                 </article>
               ))}
             </div>
-            
-{selected && (
-  <section className="mt-6 rounded-2xl border border-orange-400/20 bg-[#101013] p-6 md:p-8">
-    <div className="flex flex-wrap items-start justify-between gap-4">
-      <div>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-orange-400">
-          COMPONENT DETAILS
-        </p>
 
-        <h3 className="mt-2 text-2xl font-semibold">
-          {selected.name}
-        </h3>
+            {selected && (
+              <section className="mt-6 rounded-2xl border border-orange-400/20 bg-[#101013] p-6 md:p-8">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-orange-400">
+                      COMPONENT DETAILS
+                    </p>
 
-        <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-500">
-          {selected.description}
-        </p>
+                    <h3 className="mt-2 text-2xl font-semibold">
+                      {selected.name}
+                    </h3>
 
-        <p className="mt-4 text-xs text-zinc-500">
-          Category: {selected.category}
-        </p>
-      </div>
+                    <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-500">
+                      {selected.description}
+                    </p>
 
-      <button
-        onClick={() => setSelectedComponent(null)}
-        className="rounded-lg border border-white/10 px-3 py-2 text-xs text-zinc-300 transition hover:border-orange-400/30 hover:text-orange-300"
-      >
-        Close ×
-      </button>
-    </div>
-  </section>
-)}
+                    <p className="mt-4 text-xs text-zinc-500">
+                      Category: {selected.category}
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedComponent(null)}
+                    className="rounded-lg border border-white/10 px-3 py-2 text-xs text-zinc-300 transition hover:border-orange-400/30 hover:text-orange-300"
+                  >
+                    Close ×
+                  </button>
+                </div>
+              </section>
+            )}
 
             {filteredComponents.length === 0 && (
               <p className="rounded-xl border border-white/8 p-8 text-center text-sm text-zinc-500">
